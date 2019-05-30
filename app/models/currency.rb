@@ -9,6 +9,8 @@ class Currency < ApplicationRecord
 	end
 
   def calculate_value(amount)
-    current_price.map {|value| (value.to_f * amount.to_f).round(4)}
+    usd_value = (current_price[0].to_f * amount.to_f).round(4)
+    btc_value = current_price[1].to_f * amount.to_f
+    return usd_value, btc_value
   end
 end
